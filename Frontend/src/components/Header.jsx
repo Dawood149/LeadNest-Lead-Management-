@@ -1,10 +1,10 @@
 import React from 'react'
-import Navbar from './Navbar'
+import HomeNavbar from './HomeNavbar'
 
 const Header = () => {
   return (
     <>
-    <Navbar/>
+    <HomeNavbar/>
     
     
     </>
