@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <>
-      <div className='w-full bg-gray-400 flex'>
+      <div className='w-full bg-slate-400 flex'>
         <div className='w-[55%]'>
           <img src={backgroundImg} alt="Login Page Image" />
         </div>

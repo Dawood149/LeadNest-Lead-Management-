@@ -4,6 +4,9 @@ import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import Dashboard from "./pages/Dashboard"
 import Layout from "./components/Layout"
+import Leads from "./pages/Leads"
+import Tasks from "./pages/Tasks"
+import Appointments from "./pages/Appointments"
 
 function App() {
 
@@ -17,7 +20,13 @@ function App() {
           <Route path="/signup" element={<SignUp />}> </Route>
 
           {/* ----------------Routes to protect */}
-          <Route path="/layout" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
+
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/leads" element={<Leads />}></Route>
+            <Route path="/tasks" element={<Tasks />}></Route>
+            <Route path="/appointments" element={<Appointments/>}></Route>
+
           </Route>
         </Routes>
       </BrowserRouter>
