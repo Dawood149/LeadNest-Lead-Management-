@@ -8,7 +8,7 @@ const Sidebar = () => {
   return (
     
     <>
-    <div className='h-auto bg-zinc-700 m-2 rounded w-50'>
+    <div className='h-full bg-zinc-700 m-2 rounded w-50'>
          <h1 className='text-white text-3xl p-5'>LeadNest</h1>
 
          <div className='text-white font-bold mt-15 flex justify-center h-screen'>
