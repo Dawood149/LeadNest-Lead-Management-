@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
-import HeroSection from '../components/HeroSection'
-import Footer from '../components/Footer'
+import Header from '../components/LandingPage/Header'
+import HeroSection from '../components/LandingPage/HeroSection'
+import Footer from '../components/LandingPage/Footer'
 
 
 const LandingPage = () => {

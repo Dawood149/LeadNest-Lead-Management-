@@ -1,11 +1,21 @@
 import React from 'react'
+import AddLeadBox from '../components/leadsPage/AddLeadBox'
+import LeadsTable from '../components/leadsPage/LeadsTable'
+import { useState } from 'react'
+import Button from '@mui/material/Button';
+
 
 const Leads = () => {
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <>
-      <div className='flex gap-20'>
+      <div className='flex gap-20 p-6 items-center'>
 
-        <div className=' flex rounded-2xl w-70'>
+        <div className=' flex rounded-2xl w-70 h-10'>
           <input
             type="email"
             id="email"
@@ -25,33 +35,56 @@ const Leads = () => {
           </button>
         </div>
 
-        <div className='border'>
-          {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
-{/* For TSX uncomment the commented types below */}
-<button className="btn" popoverTarget="popover-1" style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}>
-  Button
-</button>
-
-<ul className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
-  popover="auto" id="popover-1" style={{ positionAnchor: "--anchor-1" } /* as React.CSSProperties */ }>
-  <li><a>Item 1</a></li>
-  <li><a>Item 2</a></li>
-</ul>
+        <div className=''>
+          <label htmlFor="date" className="text-sm font-medium text-gray-700" >Date:</label><br />
+          <input type="date" className='bg-white rounded-lg px-3 py-1 shadow cursor-pointer' />
         </div>
 
-        <div className='border'>
-          Status
+        <div className="relative w-48">
+          <label for="status" className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+          <select
+            id="status"
+            className="block w-full px-3 py-2 pr-8 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 bg-white shadow-sm transition-all"
+          >
+            <option value="All">All</option>
+            <option value="New" >New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Converted">Converted</option>
+            <option value="Dropped">Dropped</option>
+          </select>
+
         </div>
 
-        <div className='border'>
-          Assigned to
+        <div className="relative w-48">
+          <label for="status" className="block text-sm font-medium text-gray-700 mb-1">Assigned To</label>
+          <select
+            id="status"
+            className="block w-full px-3 py-2 pr-8 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 bg-white shadow-sm transition-all"
+          >
+            <option value="All">Agent 1</option>
+            <option value="New" >Agent 2</option>
+            <option value="Contacted">Agent 3</option>
+            <option value="In Progress">Agent 4</option>
+            <option value="Converted">Agent 5</option>
+            <option value="Dropped">Agent 6</option>
+          </select>
+
         </div>
 
-        <div className='border'>
-          <button>Add Lead +</button>
+        <div className=''>
+                <Button onClick={handleOpen}>Add Lead +</Button>
         </div>
+
+
 
       </div>
+      {open ? (<AddLeadBox  handleClose={handleClose} open={open} />) : null}
+
+      <div className=''>
+      <LeadsTable/>
+      </div>
+
     </>
   )
 }

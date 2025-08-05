@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import datentimeIcon from '../assets/datentimeIcon.png'
-import DashboardCards from '../components/DashboardCards';
-import DashboardCardsAdmin from '../components/DashboardCardsAdmin';
-import LeadPipeline from '../components/LeadPipeline';
-import UpcomingAppointments from '../components/UpcomingAppointments';
-import TaskDue from '../components/TaskDue';
+import DashboardCards from '../components/dashboard/DashboardCards';
+import DashboardCardsAdmin from '../components/dashboard/DashboardCardsAdmin';
+import LeadPipeline from '../components/dashboard/LeadPipeline';
+import UpcomingAppointments from '../components/dashboard/UpcomingAppointments';
+import TaskDue from '../components/dashboard/TaskDue';
+import { updateDateTime } from '../utils';
 
 const Dashboard = () => {
 
@@ -13,26 +14,14 @@ const Dashboard = () => {
 
   const [isAdmin, setIsAdmin] = useState(false)
 
-/*   function updateDateTime() 
-  {
-      const now = new Date();
-      const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
-      }
-      setDate(now.toLocaleString('en-US', options))
-    }
-    useEffect(() => {
-    updateDateTime();
-    const interval = setInterval(updateDateTime, 1000);
-    return () => clearInterval(interval);
-  }, []); */
+  
+ /*  useEffect(() => {
+  const interval = setInterval(() => {
+    setDate(updateDateTime());
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []); */
 
   return (
     
@@ -40,7 +29,7 @@ const Dashboard = () => {
         <h1 className='text-2xl font-bold'>Welcome Back User! <br /> </h1>
         <div className='flex items-center mb-10 mt-5 text-xl'>
           <img className='h-12 w-12' src={datentimeIcon} alt="img" />
-          <p>Date{date}</p>
+          <p>{date}</p>
 
         </div>
 

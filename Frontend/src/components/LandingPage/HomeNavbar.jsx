@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/LeadNest-Logo.jpg'
+import logo from '../../assets/LeadNest-Logo.jpg'
 import { NavLink } from 'react-router-dom'
 
 const HomeNavbar = () => {

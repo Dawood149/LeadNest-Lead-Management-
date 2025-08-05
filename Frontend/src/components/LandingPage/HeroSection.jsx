@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import heroImage from '../assets/heroSection.webp'
+import heroImage from '../../assets/heroSection.webp'
 
 const HeroSection = () => {
 

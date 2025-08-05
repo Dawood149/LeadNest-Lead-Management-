@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../assets/LeadNest-Logo.jpg'
-import linkedIn from '../assets/linkedInn-Logo.webp'
-import insta from '../assets/Insta-Icon.webp'
-import fb from '../assets/Facebook-Icon.webp'
+import logo from '../../assets/LeadNest-Logo.jpg'
+import linkedIn from '../../assets/linkedInn-Logo.webp'
+import insta from '../../assets/Insta-Icon.webp'
+import fb from '../../assets/Facebook-Icon.webp'
 
 const aboutus = ["Overview", "Privacy Policy", "Terms and Conditions"];
 const faq = ["General Questions", "Documentation", "Glossary of Terms"];
