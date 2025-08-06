@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
-import Leads from '../pages/Leads'
-import Tasks from '../pages/Tasks'
-import Appointments from '../pages/Appointments'
+import Leads from '../../pages/Leads'
+import Tasks from '../../pages/Tasks'
+import Appointments from '../../pages/Appointments'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true)
@@ -16,7 +16,7 @@ const Sidebar = () => {
 
     <>
 
-      <div className={`h-full bg-zinc-700 m-2 rounded transition-all duration-300 ease-in-out ${isOpen ? 'w-64' : 'w-20'}`}>
+      <div on={toggleSidebar}  className={`h-full bg-zinc-700 m-2 rounded transition-all duration-300 ease-in-out ${isOpen ? 'w-64' : 'w-20'}`}>
         {/* Header with toggle button */}
         <div className="flex items-center justify-between p-4 ">
           {isOpen ? (

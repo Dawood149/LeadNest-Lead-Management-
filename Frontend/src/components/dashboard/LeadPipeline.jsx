@@ -28,7 +28,7 @@ const LeadPipeline = () => {
         <div className='mt-2 flex gap-10'>
 
             <div className=''>
-                <h1 className='text-2xl text-center font-bold mb-5'>New (96)</h1>
+                <h1 className='text-2xl text-center mb-5'>New (96)</h1>
 
                 {
                     arr.map((item)=>{
@@ -47,7 +47,7 @@ const LeadPipeline = () => {
             </div>
 
             <div >
-                <h1 className='text-2xl font-bold mb-5'>Contacted (24)</h1>
+                <h1 className='text-2xl mb-5'>Contacted (24)</h1>
                 {
                     arr.map((item)=>{
                     return (
@@ -63,7 +63,7 @@ const LeadPipeline = () => {
             </div>
 
             <div>
-                <h1 className='text-2xl font-bold mb-5'>In Progress (18)</h1>
+                <h1 className='text-2xl mb-5'>In Progress (18)</h1>
                 {
                     arr.map((item)=>{
                     return (
@@ -79,7 +79,7 @@ const LeadPipeline = () => {
             </div>
 
             <div>
-                <h1 className='text-2xl font-bold mb-5'>Converted (7)</h1>
+                <h1 className='text-2xl mb-5'>Converted (7)</h1>
                 {
                     arr.map((item)=>{
                     return (
@@ -95,7 +95,7 @@ const LeadPipeline = () => {
             </div>
 
             <div>
-                <h1 className='text-2xl font-bold mb-5'>Dropped (12)</h1>
+                <h1 className='text-2xl mb-5'>Dropped (12)</h1>
                 {
                     arr.map((item)=>{
                     return (
