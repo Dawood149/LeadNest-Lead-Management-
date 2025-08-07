@@ -13,7 +13,7 @@ const Leads = () => {
 
   return (
     <>
-      <div className='flex gap-20 p-6 items-center'>
+      <div className='flex gap-10 p-6 items-center'>
 
         <div className=' flex rounded-2xl w-70 h-10'>
           <input
@@ -38,6 +38,18 @@ const Leads = () => {
         <div className=''>
           <label htmlFor="date" className="text-sm font-medium text-gray-700" >Date:</label><br />
           <input type="date" className='bg-white rounded-lg px-3 py-1 shadow cursor-pointer' />
+        </div>
+
+        <div className="relative w-48">
+          <label for="status" className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+          <select
+            id="status"
+            className="block w-full px-3 py-2 pr-8 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 bg-white shadow-sm transition-all"
+          >
+            <option className='text-red-700' value="All">Buyer</option>
+            <option className='text-green-700' value="New" >Seller</option>
+          </select>
+
         </div>
 
         <div className="relative w-48">
@@ -71,6 +83,8 @@ const Leads = () => {
           </select>
 
         </div>
+
+        
 
         <div className=''>
                 <Button onClick={handleOpen}>Add Lead +</Button>

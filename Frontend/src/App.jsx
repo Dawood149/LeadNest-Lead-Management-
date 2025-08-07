@@ -7,6 +7,7 @@ import Layout from "./components/layout/Layout"
 import Leads from "./pages/Leads"
 import Tasks from "./pages/Tasks"
 import Appointments from "./pages/Appointments"
+import Agents from "./pages/Agents"
 
 function App() {
 
@@ -25,7 +26,9 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/leads" element={<Leads />}></Route>
             <Route path="/tasks" element={<Tasks />}></Route>
-            <Route path="/appointments" element={<Appointments/>}></Route>
+            <Route path="/appointments" element={<Appointments />}></Route>
+            <Route path="/agents" element={<Agents />}></Route>
+
 
           </Route>
         </Routes>

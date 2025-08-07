@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const [date, setDate] = useState()
 
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(true)
 
   
 /*   useEffect(() => {

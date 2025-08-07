@@ -1,95 +1,15 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import LeadDetails from './LeadDetails';
+import { dummyLeads } from '../../data';
 
 
 const LeadsTable = () => {
 
-  const dummyLeads = [
-    {
-      leadName: "Sarah Johnson",
-      leadPhone: "212-555-0187",
-      leadEmail: "sarah.j@protonmail.com",
-      status: "Contacted",
-      date: "2025-09-05",
-      agentAssigned: "You"
-    },
-    {
-      leadName: "Michael Chen",
-      leadPhone: "415-832-6543",
-      leadEmail: "michael.chen@outlook.com",
-      status: "In Progress",
-      date: "2025-09-01",
-      agentAssigned: "Nelson Vallejo"
-    },
-    {
-      leadName: "Amanda Rodriguez",
-      leadPhone: "305-555-9123",
-      leadEmail: "arodriguez@gmail.com",
-      status: "Converted",
-      date: "2025-08-28",
-      agentAssigned: "Valentin Sotomayor"
-    },
-    {
-      leadName: "James Wilson",
-      leadPhone: "617-555-3478",
-      leadEmail: "jwilson22@yahoo.com",
-      status: "Dropped",
-      date: "2025-08-30",
-      agentAssigned: "Allyson Carlquist"
-    },
-    {
-      leadName: "Emily Park",
-      leadPhone: "310-555-4289",
-      leadEmail: "emily.park@icloud.com",
-      status: "New",
-      date: "2025-09-03",
-      agentAssigned: "Katrina Vitale"
-    },
-    {
-      leadName: "Robert Kim",
-      leadPhone: "404-555-8765",
-      leadEmail: "rkim@business.com",
-      status: "Contacted",
-      date: "2025-09-04",
-      agentAssigned: "Keller Williams"
-    },
-    {
-      leadName: "Lisa Thompson",
-      leadPhone: "312-555-2398",
-      leadEmail: "lisa.t@realestate.com",
-      status: "In Progress",
-      date: "2025-09-02",
-      agentAssigned: "Katrina Vitale"
-    },
-    {
-      leadName: "David Martinez",
-      leadPhone: "713-555-7654",
-      leadEmail: "dmartinez@mail.com",
-      status: "New",
-      date: "2025-09-06",
-      agentAssigned: "You"
-    },
-    {
-      leadName: "Jennifer Lee",
-      leadPhone: "206-555-9821",
-      leadEmail: "j.lee@nwre.com",
-      status: "Converted",
-      date: "2025-08-29",
-      agentAssigned: "Allyson Carlquist"
-    },
-    {
-      leadName: "Thomas Brown",
-      leadPhone: "303-555-0145",
-      leadEmail: "tbrown@denverhomes.com",
-      status: "Dropped",
-      date: "2025-08-31",
-      agentAssigned: "Garrett Serwatka"
-    }
-  ]
+
 
   const [currentPage, setCurrentPage] = useState(1)
-
+  const [openActionIndex, setOpenActionIndex] = useState(null);
 
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
@@ -98,13 +18,13 @@ const LeadsTable = () => {
   const numberOfPages = Math.ceil(dummyLeads.length / recordsPerPage)
   const numbers = [...Array(numberOfPages + 1).keys()].slice(1)
 
-  
-    function prevPage() {
+
+  function prevPage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1)
     }
   }
-  
+
   function changeCurrentPage(n) {
     setCurrentPage(n)
   }
@@ -116,7 +36,14 @@ const LeadsTable = () => {
   }
 
   const [openLeadDetails, setOpenLeadDetails] = React.useState(false);
-  const handleOpen = () => setOpenLeadDetails(true);
+  const [leadDetails, setLeadDetails]=useState(null)
+
+  const handleOpen = (data) => {
+    setOpenLeadDetails(true);
+    setLeadDetails(data)
+
+    console.log(data)
+  }
   const handleClose = () => setOpenLeadDetails(false);
 
 
@@ -155,6 +82,13 @@ const LeadsTable = () => {
                       className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"
                     >
                       {" "}
+                      Type{" "}
+                    </th>
+                    <th
+                      scope="col"
+                      className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"
+                    >
+                      {" "}
                       Status{" "}
                     </th>
                     <th
@@ -171,24 +105,73 @@ const LeadsTable = () => {
                       {" "}
                       Agent{" "}
                     </th>
+                    <th
+                      scope="col"
+                      className="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"
+                    >
+                      {" "}
+                      Actions{" "}
+                    </th>
                   </tr>
                 </thead>
+
                 <tbody className="divide-y divide-gray-300 ">
                   {currentRecords.map((data, index) => (
-                    <tr key={index} onDoubleClick={handleOpen} className="cursor-pointer hover:bg-gray-300">
+                    <tr
+                      key={index}
+                      onDoubleClick={() => handleOpen(data)}
+                      className="relative cursor-pointer hover:bg-gray-300"
+                    >
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.leadName}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.leadPhone}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.leadEmail}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.type}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.status}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.date}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.agentAssigned}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 relative">
+                        <button
+                          onClick={() =>
+                            setOpenActionIndex(openActionIndex === index ? null : index)
+                          }
+                          className="p-1 cursor-pointer hover:bg-gray-400 hover:rounded-3xl"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#000000"
+                          >
+                            <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z" />
+                          </svg>
+                        </button>
 
-                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{data.leadName}</td>
-                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{data.leadPhone}</td>
-                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{data.leadEmail}</td>
-                      <td className=" p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.status}</td>
-                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{data.date}</td>
-                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 ">{data.agentAssigned}</td>
+                        {/* Dropdown menu */}
+                        {openActionIndex === index && (
+                          <div className="absolute right-0 mt-2 w-28 bg-white rounded-md shadow-lg z-50">
+                            <ul className="py-1 text-sm text-gray-700">
+                              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Edit</li>
+                              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Delete</li>
+                            </ul>
+                          </div>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
+
+           {
+        (openLeadDetails ? <LeadDetails details={leadDetails} onClose={handleClose} onOpen={handleOpen} /> : null)
+      }
+
+
+    {/* --------------------PAGINATION */}
+
+
           <nav aria-label="Page navigation example ">
             <ul class="inline-flex -space-x-px text-sm cursor-pointer">
               <li>
@@ -217,9 +200,7 @@ const LeadsTable = () => {
         </div>
       </div>
 
-      {
-        (openLeadDetails ? <LeadDetails onClose={handleClose} onOpen={handleOpen}/> : null)
-      }
+     
     </>
 
   )
