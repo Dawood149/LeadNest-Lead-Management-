@@ -1,0 +1,80 @@
+import React from "react";
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  Typography,
+  TextField,
+  Button,
+  Stack,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from "@mui/material";
+
+const AddNotes = () => {
+  const [notes, setNotes] = useState([]);
+  const [noteInput, setNoteInput] = useState(""); 
+
+  const handleAddNote = () => {
+    if (noteInput.trim() !== "") {
+      setNotes((prevNotes) => [...prevNotes, noteInput]); 
+      setNoteInput(""); 
+    }
+  };
+
+  const handleChange = (e) => {
+    setNoteInput(e.target.value);
+  };
+
+  return (
+    <>
+      <Card sx={{ borderRadius: 2, boxShadow: 3, width: "100vh" }}>
+      <CardContent>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Add Note
+        </Typography>
+
+        <Stack direction="row" spacing={2}>
+          <TextField
+            fullWidth
+            placeholder="Type your note here..."
+            variant="outlined"
+            size="small"
+            value={noteInput}
+            onChange={handleChange}
+          />
+          <Button
+            variant="contained"
+            onClick={handleAddNote}
+            sx={{
+              backgroundColor: "#4b5563",
+              width: 150,
+              "&:hover": { backgroundColor: "#374151" },
+            }}
+          >
+            Add Note
+          </Button>
+        </Stack>
+
+        {/* Notes List */}
+        {notes.length > 0 && (
+          <List sx={{ mt: 2, bgcolor: "#f9fafb", borderRadius: 1 }}>
+            {notes.map((note, index) => (
+              <React.Fragment key={index}>
+                <ListItem sx={{ py: 0.5 }}>
+                  <ListItemText primary={note} />
+                </ListItem>
+                {index !== notes.length - 1 && <Divider />}
+              </React.Fragment>
+            ))}
+          </List>
+        )}
+      </CardContent>
+    </Card>
+    </>
+  );
+};
+
+export default AddNotes;
