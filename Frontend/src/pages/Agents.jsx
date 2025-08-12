@@ -30,7 +30,7 @@ const Agents = () => {
             {agents.map((agent) => (
               <tr
                 key={agent.id}
-                className="border-t hover:bg-gray-50 transition"
+                className=" hover:bg-gray-50 transition"
               >
                 <td className="py-3 px-4 font-medium">{agent.name}</td>
                 <td className="py-3 px-4">{agent.email}</td>
@@ -51,7 +51,7 @@ const Agents = () => {
                     onClick={() => handleDelete(agent.id)}
                     className="p-2 text-red-500 hover:text-red-700 rounded-lg hover:bg-red-50 transition"
                   >
-                    <Trash2 size={18} />
+                    <Trash2 size={20} />
                   </button>
                 </td>
               </tr>

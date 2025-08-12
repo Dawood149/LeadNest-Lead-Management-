@@ -15,13 +15,13 @@ const Dashboard = () => {
   const [isAdmin, setIsAdmin] = useState(true)
 
   
-/*   useEffect(() => {
+  useEffect(() => {
   const interval = setInterval(() => {
     setDate(updateDateTime());
   }, 1000);
 
   return () => clearInterval(interval);
-}, [date]); */
+}, [date]);
 
   return (
     

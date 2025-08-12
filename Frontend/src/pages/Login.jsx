@@ -1,29 +1,27 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import { NavLink, useNavigate } from 'react-router-dom'
-import backgroundImg from '../assets/login-bg.png'
-import logo from '../assets/logo-nobackground.png'
+import React from "react";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
+import backgroundImg from "../assets/login-bg.png";
+import logo from "../assets/logo-nobackground.png";
 
 const Login = () => {
-
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-
   } = useForm();
 
   function formSubmit(data) {
-    navigate("/dashboard")
-    console.log(data)
+    navigate("/dashboard");
+    console.log(data);
   }
 
   return (
     <>
-      <div className='w-full bg-slate-400 flex'>
-        <div className='w-[55%]'>
+<div className="w-full flex bg-gradient-to-r from-gray-100 via-gray-400 to-gray-800">
+        <div className="w-[55%]">
           <img src={backgroundImg} alt="Login Page Image" />
         </div>
 
@@ -32,10 +30,15 @@ const Login = () => {
         <div className="flex justify-center items-center w-[45%]">
           <div className=" p-6 rounded-lg w-full max-w-md">
             <img src={logo} alt="logo" />
-            <h2 className="text-4xl text-center mb-6 mt-10 text-gray-900">Login</h2>
+            <h2 className="text-4xl text-center mb-6 mt-10 text-gray-900">
+              Login
+            </h2>
             <form onSubmit={handleSubmit(formSubmit)}>
               <div className="mb-4">
-                <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-lg font-medium text-gray-700 mb-1"
+                >
                   Email Address
                 </label>
                 <input
@@ -48,7 +51,10 @@ const Login = () => {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="password" className="block text-lg font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="password"
+                  className="block text-lg font-medium text-gray-700 mb-1"
+                >
                   Password
                 </label>
                 <input
@@ -79,14 +85,19 @@ const Login = () => {
               </button>
 
               <div className="text-center mt-3">
-                <a href="#forgot-password" className="text-blue-600 hover:underline text-sm">
+                <a
+                  href="#forgot-password"
+                  className="text-blue-600 hover:underline text-sm"
+                >
                   Forgot password?
                 </a>
               </div>
             </form>
 
             <div className="text-center mt-6">
-              <p className="text-gray-800 text-sm mb-7">Don't have an account?</p>
+              <p className="text-gray-800 text-sm mb-7">
+                Don't have an account?
+              </p>
               <NavLink
                 to="/signup"
                 className="bg-red-500 text-white px-5 py-2.5 rounded-md  transition disabled:opacity-50"
@@ -97,11 +108,9 @@ const Login = () => {
             </div>
           </div>
         </div>
-
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

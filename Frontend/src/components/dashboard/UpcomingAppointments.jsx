@@ -33,7 +33,7 @@ const UpcomingAppointments = () => {
                             </td>
                             <td class="px-6 py-4">
                                 <span className="text-xs px-2 py-1 rounded-4xl bg-gray-500 text-white">
-                                    You
+                                    John Doe
                                 </span>
                             </td>
                             <td class="px-6 py-4">

@@ -8,6 +8,7 @@ import Leads from "./pages/Leads"
 import Tasks from "./pages/Tasks"
 import Appointments from "./pages/Appointments"
 import Agents from "./pages/Agents"
+import GetStarted from "./pages/GetStarted"
 
 function App() {
 
@@ -16,9 +17,11 @@ function App() {
       <BrowserRouter>
 
         <Routes>
+          
           <Route path="/" element={<LandingPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}> </Route>
+          <Route path="get-started" element={<GetStarted/>}></Route>
 
           {/* ----------------Routes to protect */}
           <Route path="/" element={<Layout />}>

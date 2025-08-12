@@ -3,20 +3,19 @@ import React from "react";
 const AppointmentsAndTasks = () => {
   const tasks = [
     { task: "Call Client", assigned: "John Smith", status: "In Progress", color: "bg-blue-100 text-blue-700" },
-    { task: "Prepare Report", assigned: "Jane Dee", status: "Completed", color: "bg-green-200 text-gray-800" },
-    { task: "Follow Up Email", assigned: "Alice Johnson", status: "Pending", color: "bg-red-200 text-gray-800" },
+    { task: "Prepare Report", assigned: "John Smith", status: "Completed", color: "bg-green-200 text-gray-800" },
+    { task: "Follow Up Email", assigned: "John Smith", status: "Pending", color: "bg-red-200 text-gray-800" },
   ];
 
   const meetings = [
     { agent: "John Smith", date: "April 23, 2024" },
-    { agent: "Alice Johnson", date: "April 25, 2024" },
   ];
 
   return (
     <div className="bg-white rounded-2xl shadow p-6 w-full mt-10">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">Appointment and Tasks</h2>
+        <h2 className="text-xl font-semibold">Tasks</h2>
       </div>
 
       {/* Tasks Section */}
