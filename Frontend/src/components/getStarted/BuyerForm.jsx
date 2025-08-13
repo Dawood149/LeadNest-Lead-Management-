@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 
-const BuyerForm = () => {
+const BuyerForm = ({selectedRole}) => {
 
      const {
       register,
@@ -12,7 +12,8 @@ const BuyerForm = () => {
 
   function buyerFormSubmit(buyerData) 
   {
-    console.log(buyerData);
+    const payload = { ...buyerData, selectedRole }; 
+     console.log(payload);
   }
 
   return (

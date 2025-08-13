@@ -37,10 +37,14 @@ const GetStarted = () => {
           </div>
 
           {/* Buyer Form */}
-          {selectedRole === "buyer" && <BuyerForm />}
+          {selectedRole === "buyer" && (
+            <BuyerForm selectedRole={selectedRole} />
+          )}
 
           {/* Seller Form */}
-          {selectedRole === "seller" && <SellerForm />}
+          {selectedRole === "seller" && (
+            <SellerForm selectedRole={selectedRole} />
+          )}
         </div>
       </div>
       <Footer />

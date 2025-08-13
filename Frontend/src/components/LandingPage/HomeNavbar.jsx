@@ -27,7 +27,7 @@ const HomeNavbar = () => {
           transition-all duration-300 hover:shadow-xl 
           animate-gradient-x border border-gray-600/30"
       >
-        <span className="relative z-10 flex items-center justify-center gap-2 animate-bounce">
+        <span className="relative z-10 flex items-center justify-center gap-2">
           Get Started
           <svg
             xmlns="http://www.w3.org/2000/svg"

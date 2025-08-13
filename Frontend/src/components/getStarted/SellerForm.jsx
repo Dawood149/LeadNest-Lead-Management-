@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const sellerForm = () => {
+const SellerForm = ({selectedRole}) => {
   const {
     register,
     handleSubmit,
@@ -9,7 +9,8 @@ const sellerForm = () => {
   } = useForm();
 
   function sellerFormSubmit(sellerData) {
-    console.log(sellerData);
+    const payload = { ...sellerData, selectedRole }; 
+     console.log(payload);
   }
 
   return (
@@ -124,4 +125,4 @@ const sellerForm = () => {
   );
 };
 
-export default sellerForm;
+export default SellerForm;
