@@ -12,7 +12,7 @@ const Navbar = () => {
 
         <>
             <nav className='m-2'>
-                <div className='bg-zinc-700  flex relative h-15 rounded p-2'>
+                <div className='bg-gray-800  flex relative h-15 rounded p-2'>
 
 
                     <div className='absolute right-50 flex gap-15'>
@@ -44,11 +44,11 @@ const Navbar = () => {
                                 <div className="bg-white text-black left-0 absolute mt-3 w-100 h-100 bg-white-700 rounded-lg shadow-xl py-1 z-10">
                                     <button
 
-                                        className=" cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-zinc-400 -b-1"
+                                        className=" cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-zinc-200 -b-1"
                                     >
                                         Notification
                                     </button>
-                                    <button className="cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-zinc-400">
+                                    <button className="cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-zinc-200">
                                         Notification</button>
                                 </div>
                             )}
@@ -74,16 +74,16 @@ const Navbar = () => {
                         {/* Dropdown menu */}
                         {isLogoutDropdownOpen && (
 
-                            <div className="text-white absolute right-0 mt-2 w-48 bg-zinc-700 rounded-lg shadow-xl py-1 z-10 border">
+                            <div className="text-white absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-xl py-1 z-10 border">
                                 <NavLink to='/login'>
                                 <button
 
-                                    className=" cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-zinc-400"
+                                    className=" cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-gray-700"
                                 >
                                     Logout
                                 </button>
                                 </NavLink>
-                                <button className="cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-zinc-400">Profile</button>
+                              
                             </div>
                         )}
 

@@ -55,7 +55,7 @@ const AddNotes = () => {
               variant="contained"
               onClick={handleAddNote}
               sx={{
-                backgroundColor: "#4b5563",
+                backgroundColor: "#1e293b",
                 width: 150,
                 "&:hover": { backgroundColor: "#374151" },
               }}

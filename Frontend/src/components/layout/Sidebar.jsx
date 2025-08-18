@@ -17,7 +17,7 @@ const Sidebar = () => {
 
     <>
 
-      <div on={toggleSidebar} className={`h-full bg-zinc-700 m-2 rounded transition-all duration-300 ease-in-out ${isOpen ? 'w-64' : 'w-20'}`}>
+      <div on={toggleSidebar} className={`h-full bg-gray-800 m-2 rounded transition-all duration-300 ease-in-out ${isOpen ? 'w-64' : 'w-20'}`}>
         {/* Header with toggle button */}
         <div className="flex items-center justify-between p-4 ">
           {isOpen ? (
@@ -47,8 +47,8 @@ const Sidebar = () => {
                 to={'/dashboard'}
                 className={({ isActive }) =>
                   `flex items-center gap-2 p-2 rounded transition duration-200 ease-in-out ${isActive
-                    ? 'bg-gray-600 text-white shadow-lg'
-                    : 'text-white hover:bg-zinc-600'
+                    ? 'bg-gray-700 text-white shadow-lg'
+                    : 'text-white hover:bg-gray-700'
                   }`
                 }
               >
@@ -65,8 +65,8 @@ const Sidebar = () => {
                 to={'/leads'}
                 className={({ isActive }) =>
                   `flex items-center gap-2 p-2 rounded transition duration-200 ease-in-out  ${isActive
-                    ? 'bg-gray-600 text-white shadow-lg'
-                    : 'text-white hover:bg-zinc-600'
+                    ? 'bg-gray-700 text-white shadow-lg'
+                    : 'text-white hover:bg-gray-700'
                   }`
                 }
               >
@@ -83,8 +83,8 @@ const Sidebar = () => {
                 to={'/tasks'}
                 className={({ isActive }) =>
                   `flex items-center gap-2 p-2 rounded transition duration-200 ease-in-out  ${isActive
-                    ? 'bg-gray-600 text-white shadow-lg'
-                    : 'text-white hover:bg-zinc-600'
+                    ? 'bg-gray-700 text-white shadow-lg'
+                    : 'text-white hover:bg-gray-700'
                   }`
                 }
               >
@@ -101,8 +101,8 @@ const Sidebar = () => {
                 to={'/appointments'}
                 className={({ isActive }) =>
                   `flex items-center gap-2 p-2 rounded transition duration-200 ease-in-out  ${isActive
-                    ? 'bg-gray-600 text-white shadow-lg'
-                    : 'text-white hover:bg-zinc-600'
+                    ? 'bg-gray-700 text-white shadow-lg'
+                    : 'text-white hover:bg-gray-700'
                   }`
                 }
               >
@@ -118,8 +118,8 @@ const Sidebar = () => {
               to={'/agents'}
               className={({ isActive }) =>
                 `flex items-center gap-2 p-2 rounded transition duration-200 ease-in-out ${isActive
-                  ? 'bg-gray-600 text-white shadow-lg'
-                  : 'text-white hover:bg-zinc-600'
+                  ? 'bg-gray-700 text-white shadow-lg'
+                  : 'text-white hover:bg-gray-700'
                 }`
               }
             >
