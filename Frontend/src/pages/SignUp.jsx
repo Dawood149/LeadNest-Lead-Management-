@@ -1,24 +1,37 @@
 import React from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo-nobackground.png";
 
+
 //added axios of this component. create it's api and store in form
 
+
 const SignUp = () => {
+
+
+    const [isLoading, setisLoading]=useState(false)
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm();
 
+const navigate=useNavigate()
+
+
+
+
   function formSubmit(data) {
-    console.log(data);
-    axios
-      .post("http://localhost:8001/signup", data)
+        setisLoading(true);
+    //console.log(data);
+    axios.post("http://localhost:8000/signup", data)
       .then((result) => {
-        navigate("/login");
+        navigate('/login');
       })
       .catch((err) => console.log("Error occurred while signing up", err));
   }
@@ -51,7 +64,7 @@ const SignUp = () => {
                 Your Full Name
               </label>
               <input
-                {...register("name", {
+                {...register("fullName", {
                   required: true,
                   maxLength: {
                     value: 20,
@@ -82,7 +95,7 @@ const SignUp = () => {
                 Your Work Email Address
               </label>
               <input
-                {...register("email")}
+                {...register("workEmail")}
                 type="email"
                 id="email"
                 placeholder="Enter your email"
@@ -109,11 +122,35 @@ const SignUp = () => {
             </div>
 
             <button
-              type="submit"
-              className="mt-4 w-full bg-gray-800 hover:bg-gray-900 text-white py-2.5 rounded-3xl cursor-pointer transitio"
-            >
-              Register
-            </button>
+  type="submit"
+  className="w-full bg-gray-800 hover:bg-gray-900 text-white py-2.5 rounded-3xl cursor-pointer transition flex items-center justify-center gap-2"
+>
+  {/* Loader (Static) */}
+  {isLoading ?  
+  <svg
+    className="animate-spin h-5 w-5 text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+  >
+    <circle
+      className="opacity-25"
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="currentColor"
+      strokeWidth="4"
+    ></circle>
+    <path
+      className="opacity-75"
+      fill="currentColor"
+      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+    ></path>
+  </svg>: null}
+ 
+
+  Login
+</button>
           </form>
 
           <div className="text-center mt-10">
