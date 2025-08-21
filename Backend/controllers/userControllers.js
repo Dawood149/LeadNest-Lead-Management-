@@ -1,5 +1,6 @@
 import userModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import generateToken from "../utils/generateToken.js";
 
 async function handleAgentSignUp(req, res) {
   //  console.log(req.body)
@@ -52,38 +53,43 @@ async function handleAgentSignUp(req, res) {
   }
 }
 
-export const handleLoginForm = async (req,res) => {
+export const handleLoginForm = async (req, res) => {
+  const incomingEmail = req.body.email;
+  const incomingPassword = req.body.password;
 
-  const incomingEmail=req.body.email;
-  const incomingPassword=req.body.password;
+ // console.log("Incoming Password is: ", incomingPassword);
 
-  console.log("Incoming Password is: ", incomingPassword)
-  
-    const user = await userModel.findOne({ workEmail: incomingEmail });
+  const user = await userModel.findOne({ workEmail: incomingEmail });
 
-    console.log("user is: ", user)
+  //console.log("user is: ", user);
 
-    if (!user.workEmail) 
-    {
-        return res.status(404).json({ message: "Email not found" });
-    }
+  if (!user.workEmail) {
+    return res.status(404).json({ message: "Email not found" });
+  }
 
-    const isMatch = await bcrypt.compare(incomingPassword, user.password); // will store true if password is matched, else false
-    console.log(isMatch)
+  const isMatch = await bcrypt.compare(incomingPassword, user.password); // will store true if password is matched, else false
+  //console.log(isMatch);
 
-    if (!isMatch) 
-    {
-        return res.status(401).json({ message: "Wrong Password" });
-    }
+  if (!isMatch) {
+    return res.status(401).json({ message: "Wrong Password" });
+  }
 
-    if (user.workEmail || isMatch) 
-    {
-        /* const token = jwt.sign({ email: user.email }, jwtKey, { expiresIn: '2d' })
-        res.cookie("token", token); */
-        return res.status(200).json({ message: "Login Successfull" });
-    }
-    else
-        return res.status(404).json({ message: "Something Went Wrong" })
-}
+  if (user.workEmail || isMatch) {
+    const token = generateToken(user._id, user.role);
+    //console.log(token);
+    res.cookie("token", token);
+    
+    return res.status(200).json({
+      message: "Login Successful",
+      role: user.role, // Assuming you have user object
+    });
+  } else return res.status(404).json({ message: "Something Went Wrong" });
+};
+
+export const handleLogout = async (req, res) =>
+  {
+      res.clearCookie('token')
+    return res.json({message:"Logged out"})
+  }
 
 export default handleAgentSignUp;

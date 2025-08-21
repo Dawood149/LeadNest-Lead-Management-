@@ -19,11 +19,14 @@ const Login = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
+    axios.defaults.withCredentials = true;
+
   function formSubmit(data) {
     setisLoading(true);
     axios
       .post("http://localhost:8000/login", data)
       .then((result) => {
+        console.log(result.data.role)
         navigate("/dashboard");
       })
       .catch((err) => console.log("error while signing in", err));

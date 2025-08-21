@@ -2,11 +2,19 @@ import React from 'react'
 import { useState } from 'react'
 import userImg from '../../assets/user-avatar.png'
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
 
     const [isLogoutDropdownOpen, setLogoutDropdown] = useState(false)
     const [notificationPanelOpen, setNotificationPanel] = useState(false)
+
+    function handleLogout(){
+        axios.get("http://localhost:8000/logout")
+        .then(()=>{<Navigate to="login"/>})
+        .catch(err=>{console.log(err)})
+    }
 
     return (
 
@@ -76,7 +84,7 @@ const Navbar = () => {
 
                             <div className="text-white absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-xl py-1 z-10 border">
                                 <NavLink to='/login'>
-                                <button
+                                <button onClick={handleLogout}
 
                                     className=" cursor-pointer block w-full text-left px-4 py-2 text-sm  hover:bg-gray-700"
                                 >
