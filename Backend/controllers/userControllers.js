@@ -82,6 +82,7 @@ export const handleLoginForm = async (req, res) => {
     return res.status(200).json({
       message: "Login Successful",
       role: user.role, // Assuming you have user object
+      name:user.fullName,
     });
   } else return res.status(404).json({ message: "Something Went Wrong" });
 };

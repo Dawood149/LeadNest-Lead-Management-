@@ -7,14 +7,17 @@ import LeadPipeline from '../components/dashboard/LeadPipeline';
 import UpcomingAppointments from '../components/dashboard/UpcomingAppointments';
 import TaskDue from '../components/dashboard/TaskDue';
 import { updateDateTime } from '../utils';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
 
   const [date, setDate] = useState()
 
-  const [isAdmin, setIsAdmin] = useState(true)
+  //const [isAdmin, setIsAdmin] = useState(false)
 
-  
+const { name, role } = useSelector((state) => state.user);
+
+
   useEffect(() => {
   const interval = setInterval(() => {
     setDate(updateDateTime());
@@ -26,14 +29,14 @@ const Dashboard = () => {
   return (
     
       <div className='p-1'>
-        <h1 className='text-2xl font-bold'>Welcome Back User! <br /> </h1>
+        <h1 className='text-2xl font-bold'>Welcome Back {name}!<br /> </h1>
         <div className='flex items-center mb-10 mt-5 text-xl'>
           <img className='h-12 w-12' src={datentimeIcon} alt="img" />
           <p>{date}</p>
 
         </div>
 
-        {isAdmin ? (
+        {role=='admin' ? (
           <div className='h-auto shadow-xl rounded-2xl flex gap-[17%] p-3 text-center'>
             <DashboardCardsAdmin />
           </div>
@@ -62,8 +65,8 @@ const Dashboard = () => {
         <UpcomingAppointments/>
         </div>
 
+          {role=='agent' ? <TaskDue/>:null}
           
-          <TaskDue/>
 
       </div>
     

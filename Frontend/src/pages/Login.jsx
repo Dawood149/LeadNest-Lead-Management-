@@ -7,11 +7,18 @@ import backgroundImg from "../assets/login-bg.png";
 import logo from "../assets/logo-nobackground.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+//----------------------------------------------
+// RTK Files imports
+import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../redux-tk/slices/users/userSlice";
+//---------------------------------------------
+
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setisLoading]=useState(false)
+  const [isLoading, setisLoading] = useState(false);
 
   const {
     register,
@@ -19,19 +26,22 @@ const Login = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-    axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
   function formSubmit(data) {
     setisLoading(true);
     axios
       .post("http://localhost:8000/login", data)
       .then((result) => {
-        console.log(result.data.role)
+        dispatch(
+          setUser({
+            name: result.data.name,
+            role: result.data.role,
+          })
+        );
         navigate("/dashboard");
       })
       .catch((err) => console.log("error while signing in", err));
-
-    //console.log(data);
   }
 
   return (
@@ -81,7 +91,6 @@ const Login = () => {
                   className="w-full px-4 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
                 />
 
-               
                 <span
                   className="absolute right-3 top-11 cursor-pointer text-gray-600"
                   onClick={() => setShowPassword(!showPassword)}
@@ -102,35 +111,34 @@ const Login = () => {
               </div>
 
               <button
-  type="submit"
-  className="w-full bg-gray-800 hover:bg-gray-900 text-white py-2.5 rounded-3xl cursor-pointer transition flex items-center justify-center gap-2"
->
-  {/* Loader (Static) */}
-  {isLoading ?  
-  <svg
-    className="animate-spin h-5 w-5 text-white"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
-    <circle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    ></circle>
-    <path
-      className="opacity-75"
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-    ></path>
-  </svg>: null}
- 
-
-  Login
-</button>
+                type="submit"
+                className="w-full bg-gray-800 hover:bg-gray-900 text-white py-2.5 rounded-3xl cursor-pointer transition flex items-center justify-center gap-2"
+              >
+                {/* Loader (Static) */}
+                {isLoading ? (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                  </svg>
+                ) : null}
+                Login
+              </button>
 
               <div className="text-center mt-3">
                 <a
