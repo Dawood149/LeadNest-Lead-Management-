@@ -1,19 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from 'axios'
 
+const BuyerForm = ({ selectedRole }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
-const BuyerForm = ({selectedRole}) => {
+  function buyerFormSubmit(buyerData) {
+    const payload = { ...buyerData, selectedRole };
+    console.log(payload);
 
-     const {
-      register,
-      handleSubmit,
-      formState: { errors, isSubmitting },
-    } = useForm();
-
-  function buyerFormSubmit(buyerData) 
-  {
-    const payload = { ...buyerData, selectedRole }; 
-     console.log(payload);
+    axios.post("http://localhost:8000/get-started", payload)
+    .then((result)=>{
+      console.log(result.message)
+    })
+    .catch((err)=>console.log(err))
   }
 
   return (
@@ -58,7 +62,7 @@ const BuyerForm = ({selectedRole}) => {
         </select>
 
         <input
-          {...register("Preferred Location")}
+          {...register("preferredLocation")}
           type="text"
           placeholder="Preferred Location"
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"

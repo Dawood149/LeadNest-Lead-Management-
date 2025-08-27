@@ -117,6 +117,7 @@ const { name, role } = useSelector((state) => state.user);
             </li>
 
             {/* Tasks */}
+            {role=='agent' ? 
             <li className="transition duration-200 ease-in-out">
               <NavLink
                 to={"/tasks"}
@@ -141,7 +142,9 @@ const { name, role } = useSelector((state) => state.user);
               </NavLink>
             </li>
 
+            :null}
             {/* Appointments */}
+           {role=='agent'?
             <li className="transition duration-200 ease-in-out ">
               <NavLink
                 to={"/appointments"}
@@ -165,6 +168,7 @@ const { name, role } = useSelector((state) => state.user);
                 {isOpen && <span>Appointments</span>}
               </NavLink>
             </li>
+           :null}
 
             {role=='admin'?<li>
               <NavLink

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import {
@@ -33,6 +34,9 @@ const LeadDetails = ({ onClose, onOpen, details }) => {
   const [assignTaskOpen, setAssignTaskOpen] = React.useState(false);
   const handleAssignTaskOpen = () => setAssignTaskOpen(true);
   const handleAssignTaskClose = () => setAssignTaskOpen(false);
+
+
+const { role } = useSelector((state) => state.user);
 
   return (
     <Modal
@@ -223,7 +227,7 @@ const LeadDetails = ({ onClose, onOpen, details }) => {
   </div>
 
   {/* Assigned To Dropdown */}
-  <div className="flex items-center gap-2">
+  {role=='admin'?<div className="flex items-center gap-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       height="28px"
@@ -237,16 +241,17 @@ const LeadDetails = ({ onClose, onOpen, details }) => {
       id="assignedTo"
       className="block w-full px-3 py-2 text-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 bg-white shadow-sm transition-all"
     >
-      <option value="">Assigned To</option>
+      <option value="">Assign Agent</option>
       <option value="Agent 1">Agent 1</option>
       <option value="Agent 2">Agent 2</option>
       <option value="Agent 3">Agent 3</option>
       <option value="Agent 4">Agent 4</option>
       <option value="Agent 5">Agent 5</option>
     </select>
-  </div>
+  </div> : null}
 
   {/* Assign Task Button */}
+  {role=='admin' ?
   <button
     onClick={handleAssignTaskOpen}
     className="flex items-center gap-2 p-2 bg-gray-200 rounded text-black cursor-pointer hover:bg-gray-300"
@@ -262,6 +267,8 @@ const LeadDetails = ({ onClose, onOpen, details }) => {
     </svg>
     <span>Assign Task</span>
   </button>
+  : null}
+  
             {assignTaskOpen ? (
               <AssignTaskModal handleClose={handleAssignTaskClose} />
             ) : null}

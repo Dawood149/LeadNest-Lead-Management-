@@ -4,13 +4,13 @@ import { handleLoginForm } from "../controllers/userControllers.js";
 import { verifyToken } from "../middlewares/verifyToken.js";
 import { handleLogout } from "../controllers/userControllers.js";
 
-const router=express.Router();
+const agentRouter=express.Router();
 
-router.post('/signup', handleAgentSignUp)
-router.post('/login', handleLoginForm)
-router.get('/verify-token', verifyToken, (req, res) => {
+agentRouter.post('/signup', handleAgentSignUp)
+agentRouter.post('/login', handleLoginForm)
+agentRouter.get('/verify-token', verifyToken, (req, res) => {
   res.status(200).json({ success: true, user: req.user });
 })
-router.get('/logout', handleLogout )
+agentRouter.get('/logout', handleLogout )
 
-export default router;
+export default agentRouter;

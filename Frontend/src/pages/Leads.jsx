@@ -2,6 +2,8 @@ import React from 'react'
 import AddLeadBox from '../components/leadsPage/AddLeadBox'
 import LeadsTable from '../components/leadsPage/LeadsTable'
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
+
 import Button from '@mui/material/Button';
 
 
@@ -10,6 +12,9 @@ const Leads = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { role } = useSelector((state) => state.user);
+  
 
   return (
     <>
@@ -68,7 +73,8 @@ const Leads = () => {
 
         </div>
 
-        <div className="relative w-48">
+      {role=='admin' ? 
+      <div className="relative w-48">
           <label for="status" className="block text-sm font-medium text-gray-700 mb-1">Assigned To</label>
           <select
             id="status"
@@ -83,6 +89,7 @@ const Leads = () => {
           </select>
 
         </div>
+      : null}
 
         
 

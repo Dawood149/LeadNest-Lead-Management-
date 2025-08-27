@@ -93,4 +93,6 @@ export const handleLogout = async (req, res) =>
     return res.json({message:"Logged out"})
   }
 
+
+
 export default handleAgentSignUp;

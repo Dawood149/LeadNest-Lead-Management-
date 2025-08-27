@@ -5,7 +5,7 @@ import {jsonMiddleware, urlencodedMiddleware, corsMiddleware} from "./middleware
 import agentRouter from "./routes/agentRoutes.js"
 import cookieParser from "cookie-parser";
 import { verifyToken } from "./middlewares/verifyToken.js";
-
+import leadRouter from "./routes/leadRoutes.js";
 
 dotenv.config();
 
@@ -29,3 +29,5 @@ app.use(cookieParser());
 
 //-----------EXPRESS
 app.use("/", agentRouter)
+
+app.use('/', leadRouter)
