@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Navbar = () => {
   const { name, role } = useSelector((state) => state.user);
-  console.log(name, role)
+  //console.log(name, role)
   const navigate = useNavigate();
 
   const [isLogoutDropdownOpen, setLogoutDropdown] = useState(false);

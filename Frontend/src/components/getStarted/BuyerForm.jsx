@@ -1,23 +1,35 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from 'axios'
+import { ToastContainer, toast } from "react-toastify";
+
+import axios from "axios";
 
 const BuyerForm = ({ selectedRole }) => {
+  const notify = () => toast.success("Submitted, we'll get back to you soon :)");
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
 
   function buyerFormSubmit(buyerData) {
     const payload = { ...buyerData, selectedRole };
     console.log(payload);
+    reset();
+    notify();
 
-    axios.post("http://localhost:8000/get-started", payload)
-    .then((result)=>{
-      console.log(result.message)
-    })
-    .catch((err)=>console.log(err))
+      axios
+      .post("http://localhost:8000/get-started", payload)
+      .then((result) => {
+        notify();
+        reset();
+      })
+      .catch((err) => {
+        toast.error("Submission Failed")
+        console.log(err)
+      });
   }
 
   return (
@@ -74,7 +86,7 @@ const BuyerForm = ({ selectedRole }) => {
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
         <input
-          type="number"
+          type="string"
           {...register("budget")}
           placeholder="Budget ($150,000 - $170,000)"
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -110,10 +122,11 @@ const BuyerForm = ({ selectedRole }) => {
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
 
-        <button className="w-full bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-colors">
+        <button className="w-full bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-colors cursor-pointer">
           Submit
         </button>
       </form>
+      <ToastContainer />
     </>
   );
 };

@@ -17,7 +17,7 @@ const leadSchema = new mongoose.Schema({
   },
 
   leadPhone: {
-    type: Number,
+    type: String,
     required: true,
   },
 
@@ -30,13 +30,11 @@ const leadSchema = new mongoose.Schema({
     type: String,
     enum: ["Single Family Home", "Townhouse", "Apartment", "Duplex", "Triplex"],
   },
-  prefferedLocation: {
+  preferredLocation: {
     type: String,
-    required: true,
   },
   location: {
     type: String,
-    required: true,
   },
   sqft: {
     type: Number,
@@ -44,7 +42,6 @@ const leadSchema = new mongoose.Schema({
   },
   budget: {
     type: String,
-    required: true,
   },
 
   beds: {
@@ -60,23 +57,29 @@ const leadSchema = new mongoose.Schema({
 
   address: {
     type: String,
-    required: true,
   },
   mortgage: {
     type: String,
     enum: ["Paid Off", "Pending"],
-    required: true,
   },
 
   askingPrice: {
     type: Number,
-    required: true,
   },
 
   notes: {
     type: String,
     required: true,
   },
+  agentAssigned:{
+    type:String,
+    default:""
+  },
+  status:{
+    type:String,
+    enum:['New', 'Contacted', 'In Progress', 'Converted', 'Dropped'],
+    default:'New',
+  }
 });
 
 const leadsModel = mongoose.model("leads", leadSchema);

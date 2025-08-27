@@ -1,16 +1,33 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
-const SellerForm = ({selectedRole}) => {
+const SellerForm = ({ selectedRole }) => {
+  const notify = () =>
+    toast.success("Submitted, we'll get back to you soon :)");
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
 
   function sellerFormSubmit(sellerData) {
-    const payload = { ...sellerData, selectedRole }; 
-     console.log(payload);
+    const payload = { ...sellerData, selectedRole };
+    console.log(payload);
+
+    axios
+      .post("http://localhost:8000/get-started", payload)
+      .then((result) => {
+        notify();
+        reset();
+      })
+      .catch((err) => {
+        toast.error("Submission Failed")
+        console.log(err)
+      });
   }
 
   return (
@@ -26,13 +43,13 @@ const SellerForm = ({selectedRole}) => {
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
         <input
-          {...register("Email")}
+          {...register("email")}
           type="Email"
           placeholder="Email Address"
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
         <input
-          {...register("Phone")}
+          {...register("phone")}
           type="number"
           placeholder="Phone"
           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -117,10 +134,11 @@ const SellerForm = ({selectedRole}) => {
           <option value="Paid Off">Paid Off</option>
           <option value="Pending">Pending</option>
         </select>
-        <button className="w-full bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-colors">
+        <button className="w-full bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-colors cursor-pointer">
           Submit
         </button>
       </form>
+      <ToastContainer />
     </>
   );
 };

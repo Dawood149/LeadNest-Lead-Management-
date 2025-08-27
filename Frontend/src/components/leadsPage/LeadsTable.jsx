@@ -1,21 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import LeadDetails from './LeadDetails';
-import { dummyLeads } from '../../data';
+//import { dummyLeads } from '../../data';
+
 
 
 const LeadsTable = () => {
 
+  const [leads, setLeads]=useState([])
 
-
+  useEffect(() => {
+    axios.get("http://localhost:8000/leads")
+    .then((result)=>{
+      //console.log(result.data.allRecords)
+      setLeads(result.data.allRecords)
+    })
+    .catch((err)=>{console.log(err)})
+  }, [leads])
+  
   const [currentPage, setCurrentPage] = useState(1)
   const [openActionIndex, setOpenActionIndex] = useState(null);
 
   const recordsPerPage = 5;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const currentRecords = dummyLeads.slice(firstIndex, lastIndex);
-  const numberOfPages = Math.ceil(dummyLeads.length / recordsPerPage)
+  const currentRecords = leads.slice(firstIndex, lastIndex);
+  const numberOfPages = Math.ceil(leads.length / recordsPerPage)
   const numbers = [...Array(numberOfPages + 1).keys()].slice(1)
 
 
