@@ -11,13 +11,17 @@ const LeadsTable = () => {
   const [leads, setLeads]=useState([])
 
   useEffect(() => {
+    console.log("useeffect")
     axios.get("http://localhost:8000/leads")
     .then((result)=>{
-      //console.log(result.data.allRecords)
+      console.log(result.data.allRecords)
       setLeads(result.data.allRecords)
+
     })
     .catch((err)=>{console.log(err)})
-  }, [leads])
+  }, [])
+
+
   
   const [currentPage, setCurrentPage] = useState(1)
   const [openActionIndex, setOpenActionIndex] = useState(null);
@@ -47,7 +51,6 @@ const LeadsTable = () => {
   }
 
   const [openLeadDetails, setOpenLeadDetails] = React.useState(false);
-  const [leadDetails, setLeadDetails]=useState(null)
 
   const handleOpen = (data) => {
     setOpenLeadDetails(true);
@@ -136,7 +139,7 @@ const LeadsTable = () => {
                       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.leadName}</td>
                       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.leadPhone}</td>
                       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.leadEmail}</td>
-                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.type}</td>
+                      <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.selectedRole}</td>
                       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.status}</td>
                       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.date}</td>
                       <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{data.agentAssigned}</td>
@@ -176,7 +179,7 @@ const LeadsTable = () => {
           </div>
 
            {
-        (openLeadDetails ? <LeadDetails details={leadDetails} onClose={handleClose} onOpen={handleOpen} /> : null)
+        (openLeadDetails ? <LeadDetails details={leads} onClose={handleClose} onOpen={handleOpen} /> : null)
       }
 
 
