@@ -38,6 +38,7 @@ const LeadDetails = ({ onClose, onOpen, details }) => {
 
 const { role } = useSelector((state) => state.user);
 
+
   return (
     <Modal
       open={onOpen}
@@ -181,10 +182,10 @@ const { role } = useSelector((state) => state.user);
           </div>
 
           <div className="mt-10">
-            {details.type == "Buyer" ? (
-              <BuyersPreference />
+            {details.selectedRole == "buyer" ? (
+              <BuyersPreference details={details}/>
             ) : (
-              <SellersRequirements />
+              <SellersRequirements details={details} />
             )}
           </div>
 

@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import LeadDetails from './LeadDetails';
-//import { dummyLeads } from '../../data';
 
 
 
 const LeadsTable = () => {
 
+  const [selectedLead, setSelectedLead]=useState()
   const [leads, setLeads]=useState([])
 
   useEffect(() => {
-    console.log("useeffect")
+    //console.log("useeffect")
     axios.get("http://localhost:8000/leads")
     .then((result)=>{
-      console.log(result.data.allRecords)
+      //console.log(result.data.allRecords)
       setLeads(result.data.allRecords)
 
     })
@@ -53,10 +53,11 @@ const LeadsTable = () => {
   const [openLeadDetails, setOpenLeadDetails] = React.useState(false);
 
   const handleOpen = (data) => {
+    //console.log(data)
     setOpenLeadDetails(true);
-    setLeadDetails(data)
+    setSelectedLead(data)
+    
 
-    console.log(data)
   }
   const handleClose = () => setOpenLeadDetails(false);
 
@@ -179,7 +180,7 @@ const LeadsTable = () => {
           </div>
 
            {
-        (openLeadDetails ? <LeadDetails details={leads} onClose={handleClose} onOpen={handleOpen} /> : null)
+        (openLeadDetails ? <LeadDetails details={selectedLead} onClose={handleClose} onOpen={handleOpen} /> : null)
       }
 
 
